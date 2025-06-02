@@ -4,7 +4,6 @@ import auth from '../../middlewares/auth'
 
 const shopRouter = Router()
 
-// shopRouter.get('/my-shop/:username', shopControllers.myShop)
-shopRouter.get('/my-shop/:username', auth('user'), shopControllers.myShop)
+shopRouter.get('/my-shop/:username', auth(), shopControllers.myShop)
 
 export default shopRouter
