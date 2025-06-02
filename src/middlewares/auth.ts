@@ -6,24 +6,11 @@ import config from '../config'
 
 const auth = (...requiredRole: string[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    // * Get token from header without Bearer
-    // const token = req.headers.authorization
-    // if (!token) {
-    //   throw new Error('You are not authorized')
-    // }
-
-    // * Get token from header with Bearer
-    const authHeader = req.headers.authorization
-
-    if (!authHeader) {
+ 
+    const token = req.headers.authorization
+    if (!token) {
       throw new Error('You are not authorized')
     }
-
-    if (!authHeader.startsWith('Bearer')) {
-      throw new Error('Invalid token format. Use Bearer <token>')
-    }
-
-    const token = authHeader.split(' ')[1]
 
     // Verify the token
     const decoded = jwt.verify(token, config.jwt_secret as string) as JwtPayload
@@ -41,6 +28,7 @@ const auth = (...requiredRole: string[]) => {
     }
 
     req.user = decoded as JwtPayload
+
     next()
   })
 }
