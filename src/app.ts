@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import { globalErrorHandler } from './middlewares/globalErrorHandler'
 import userRouter from './module/user/user.route'
 import authRouter from './module/auth/auth.route'
+import shopRouter from './module/shop/shop.route'
 
 const app = express()
 
@@ -10,8 +11,7 @@ app.use(express.json())
 
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
-
-app.use('/api/admin/users', userRouter)
+app.use('/api/shop', shopRouter)
 
 
 app.get('/', (req: Request, res: Response) => {

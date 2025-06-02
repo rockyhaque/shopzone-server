@@ -3,5 +3,6 @@ export interface IUser {
   password: string
   role?: string
   shops: string[]
+  createdAt?: Date
+  updatedAt?: Date
 }
-
