@@ -1,7 +1,7 @@
 import User from '../user/user.model'
-import { ShopResult } from './shop.interface'
+import { IShop } from './shop.interface'
 
-const myShop = async (username: string): Promise<ShopResult> => {
+const myShop = async (username: string): Promise<IShop> => {
   const user = await User.findOne({ username }).select('shops createdAt')
 
   if (!user) {
