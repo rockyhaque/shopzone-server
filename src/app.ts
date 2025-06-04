@@ -11,7 +11,9 @@ const app = express()
 // middleware
 app.use(express.json())
 app.use(cookieParser());
-app.use(cors({ origin: ['http://localhost:5173','http://localhost:5174', 'https://shopzone-server.vercel.app'] ,credentials:true}))
+app.use(cors({ origin: ['http://localhost:5173','http://shopzone.local:5173', 'https://shopzone-teal.vercel.app'] ,credentials:true}))
+// app.use(cors({ origin: '*' }));
+
 
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
